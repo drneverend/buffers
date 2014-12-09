@@ -34,21 +34,21 @@ public class RingBuffer {
 			return new String[0];
 		}
 		int copyTail = tail;
-		int cnt = head < tail ? tail - head : bufferSize - head + tail;
+		int cnt = head < copyTail ? copyTail - head : bufferSize - head + copyTail;
 		String[] result = new String[cnt];
 		if (head < copyTail) {
-			for (int i = head; i < tail; i++) {
+			for (int i = head; i < copyTail; i++) {
 				result[i - head] = buffer[i];
 			}
 		} else {
 			for (int i = head; i < bufferSize; i++) {
 				result[i - head] = buffer[i];
 			}
-			for (int i = 0; i < tail; i++) {
+			for (int i = 0; i < copyTail; i++) {
 				result[bufferSize - head + i] = buffer[i];
 			}
 		}
-		head = tail;
+		head = copyTail;
 		return result;
 	}
 }
