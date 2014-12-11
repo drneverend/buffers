@@ -50,7 +50,7 @@ public class RingBuffer1r2w {
 			result = buffer[head1];
 			head1 = (head1 + 1) % halfBufferSize;
 		} else {
-			result = buffer[head2];
+			result = buffer[head2 + halfBufferSize];
 			head2 = (head2 + 1) % halfBufferSize;
 		}
 		
